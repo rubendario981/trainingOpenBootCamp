@@ -15,7 +15,7 @@ const ContactComponent =({contact})=> {
     }
     
   return (
-    <div>lñoñlpo
+    <div>
         <h2>Informacion del contacto</h2>
         <h3>Nombres: {contact.name}</h3>
         <h3>Apellidos: {contact.lastName}</h3>
