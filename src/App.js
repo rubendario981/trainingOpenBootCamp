@@ -7,6 +7,7 @@ import ContactListComponent from './components/container/contact_info';
 // import {CycleDidMount, CycleDidMountAF} from './hooks/lifeCycles/testingTypesCycles'
 // import Clock from './components/container/excercises4-5-6';
 // import Father from './components/container/father';
+import Exercises10To12 from './components/container/Exercises10-11-12'
 
 function App() {
   return (
@@ -23,7 +24,8 @@ function App() {
         <ComponenteConContexto/>
       <TaskListComponent></TaskListComponent>
       </header> */}
-      <ContactListComponent></ContactListComponent>  
+      {/* <ContactListComponent></ContactListComponent>   */}
+      <Exercises10To12/>
     </div>
   );
 }
