@@ -4,7 +4,7 @@ import { Task } from '../../../models/task.class'
 import { LEVELS } from '../../../models/levels.enum'
 import '../../../styles/tasks.scss'
 
-const TaskComponent = ({ task }) => {
+const TaskComponent = ({ task, complete, deleteTask }) => {
   useEffect(() => {
     console.log('Task created')
     return () => {
@@ -43,43 +43,40 @@ const TaskComponent = ({ task }) => {
         break;
     }
   }
+
   return (
     <tr className='fw-normal'>
-      <th>
+      <th className='align-middle'>
         <span className='ms-2'>
           {task.name}
         </span>
       </th>
-      <td>
-        <span className='aling-middle'>{
-          task.description}
+      <td className='align-middle'>
+        <span>
+          {task.description}
         </span>
       </td>
-      <td>
-        <span className='aling-middle'>
+      <td className='align-middle'>
+        <span>
           {taskLevelBadge()}
         </span>
       </td>
       <td>
-        <span className='aling-middle'>
+        <span className='align-middle'>
           {task.completed ?
-            <i className='bi-check' style={{ fontWeigth: 'bold', color: 'green', fontSize: '32px' }}></i> :
-            <i className='bi-x-circle-fill' style={{ fontWeigth: 'bold', color: 'red', fontSize: '32px' }}></i>}
+            <i onClick={()=> complete(task)} className='bi-toggle-off' role='button' style={{ fontWeigth: 'bold', color: 'gray', fontSize: '36px' }}></i> :
+            <i onClick={()=> complete(task)} className='bi-toggle-on' role='button' style={{ fontWeigth: 'bold', color: 'green', fontSize: '36px' }}></i>}
         </span>
-        <i className="bi-trash ms-5" style={{ fontWeigth: 'bold', color: 'red', fontSize: '32px' }}></i>
+        <i onClick={()=> deleteTask(task)} className="bi-trash ms-5" role='button' style={{ fontWeigth: 'bold', color: 'red', fontSize: '32px' }}></i>
       </td>
     </tr>
-    // <div>
-    //     <h2 className='task-name'>Nombre: {task.name}</h2>
-    //     <h3>Descripcion: {task.description}</h3>
-    //     <h4>Nivel: {task.level}</h4>
-    //     <h5>La tarea esta  {task.completed ? 'completada': 'incompleta'}</h5>
-    // </div>
   )
 }
 
 TaskComponent.propTypes = {
-  task: PropTypes.instanceOf(Task)
+  task: PropTypes.instanceOf(Task).isRequired,
+  complete: PropTypes.func.isRequired,
+  deleteTask: PropTypes.func.isRequired
 }
 
 export default TaskComponent

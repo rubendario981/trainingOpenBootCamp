@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { LEVELS } from '../../models/levels.enum'
 import { Task } from '../../models/task.class'
 import TaskComponent from '../pure/forms/task'
+import TaskForm from '../pure/forms/taskForm'
 
 const TaskListComponent =() => {
   const defaultTask = new Task('Example', 'Default Description', false, LEVELS.NORMAL)
@@ -21,18 +22,38 @@ const TaskListComponent =() => {
 
     }
   }, [tasks])
-  const changeCompleted =(id)=>{
-    setTasks()
+
+  const completeTask =(task)=>{
+    const index = tasks.indexOf(task)
+    const tempTasks = [...tasks]
+    tempTasks[index].completed = !tempTasks[index].completed;
+    setTasks(tempTasks)
+  }
+
+  const deleteTask = (task) =>{
+    const index = tasks.indexOf(task)
+    const tempTasks = [...tasks]
+    tempTasks.splice(index, 1) 
+
+    setTasks(tempTasks)
+
+  }
+
+  const addTask = (task)=>{
+    const tempTasks = [...tasks]
+    tempTasks.push(task)
+    setTasks(tempTasks)
   }
   return (
-    <div className='col-12'>
-      <div className="card">
-        <div className="card-header p3">
+    <div className='d-flex flex-column justify-content-center mt-5'>
+      <TaskForm add={addTask}></TaskForm>
+      <div className="card w-75">
+        <div className="card-header">
           <h5 className="card-title">Your Tasks are: </h5>
         </div>
-        <div className="card-body" data-mbd-perfect-scrollbar='true' style={{position: 'relative', heigth: '400px'}}>
-          <table>
-            <thead>
+        <div className="card-body p-0" data-mbd-perfect-scrollbar='true'>
+          <table className='table table-primary table-striped table-hover table-bordered'>
+            <thead className='text-primary fs-5'>
             <tr>
               <th scope='col'>Title</th>
               <th scope='col'>Description</th>
@@ -40,10 +61,16 @@ const TaskListComponent =() => {
               <th scope='col'>Actions</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody className='table-group-divider'>
               {tasks.map((task, index)=>{
                 return(
-                  <TaskComponent key={index} task={task}></TaskComponent>
+                  <TaskComponent 
+                    key={index} 
+                    task={task}
+                    complete={completeTask}
+                    deleteTask={deleteTask}
+                    >
+                  </TaskComponent>
 
                 )
               })}
@@ -51,10 +78,6 @@ const TaskListComponent =() => {
           </table>
         </div>
       </div>
-        <h2>
-
-        </h2>
-
 
     </div>
   )

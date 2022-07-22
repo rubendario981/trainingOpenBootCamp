@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import Child from '../pure/forms/child'
+import TaskForm from '../pure/forms/taskForm'
 
 const Father = () => {
     const showMessage =(msg, )=>{
@@ -26,6 +27,7 @@ const Father = () => {
           <Child send={showMessage} sendMesageToFather={showMessage2}></Child>
         </div>
       </div>
+      <TaskForm></TaskForm>
     </div>
   )
 }
