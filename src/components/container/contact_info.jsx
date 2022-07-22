@@ -41,7 +41,7 @@ const ContactListComponent = () => {
           }
         </div>
         <div className="card-body p-0">
-          <table className='table table-primary table-striped table-hover table-bordered'>
+          <table className='table table-primary table-striped table-hover table-bordered '>
             <thead className='text-primary fs-5 align-middle'>
               <tr>
                 <td scope='col'>Nombres</td>
@@ -49,7 +49,7 @@ const ContactListComponent = () => {
                 <td scope='col'>Correo electronico</td>
                 <td scope='col'>Estado</td>
                 <td scope='col'>Cambiar estado</td>
-                <td scope='col'>Eliminar</td>
+                <td scope='col'>Eliminar </td>
               </tr>
             </thead>
             <tbody className='table-group-divider'>
