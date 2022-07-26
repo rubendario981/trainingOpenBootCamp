@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Task } from '../../../models/task.class'
 import { LEVELS } from '../../../models/levels.enum'
 
-const TaskForm = ({add}) => {
+const TaskForm = ({add, length}) => {
 
   const name = useRef('')
   const description = useRef('')
@@ -15,7 +15,8 @@ const TaskForm = ({add}) => {
     add(newTask)
   }
   return (
-    <div>
+    <div className='p-4 border-primary bg-info'>
+      <h3 className="bg-primary text-white py-2 mb-4">Formulario para creacion de tareas</h3>
       <form onSubmit={addTask} className='d-flex flex-column justify-content-center'>
         <div className="form-outline flex-fill">
           <div className="form-floating mb-3">
@@ -35,14 +36,18 @@ const TaskForm = ({add}) => {
             <label htmlFor="selectLeve">Prioridad</label>
           </div>
         </div>
-        <button className='btn btn-primary' type='submit' >Crear Tarea</button>
+        <div className="d-flex justify-content-around">
+          <button className='btn btn-success' type='submit' >{length > 0 ? 'Crear Tarea' : 'Crear primera tarea'}</button>
+          <button className='btn btn-warning' type='reset' >Limpiar formulario</button>
+        </div>
       </form>
     </div>
   )
 }
 
 TaskForm.propTypes = {
-  add: PropTypes.func.isRequired
+  add: PropTypes.func.isRequired,
+  length: PropTypes.number.isRequired
 }
 
 export default TaskForm
