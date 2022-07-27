@@ -3,6 +3,7 @@ import './App.css';
 import TaskListComponent from './components/container/task_list';
 import ContactListComponent from './components/container/contact_info';
 import LoginForm from './components/pure/forms/loginForm';
+import RegisterForm from './components/pure/forms/registerForm'
 // import GrettinStyled from './components/pure/forms/greetingStyled';
 // import ComponenteConContexto from './hooks/ejemplo1';
 // import {CycleDidMount, CycleDidMountAF} from './hooks/lifeCycles/testingTypesCycles'
@@ -27,6 +28,7 @@ function App() {
       </header> */}
       {/* <ContactListComponent></ContactListComponent>   */}
       <LoginForm></LoginForm>
+      <RegisterForm/>
       <TaskListComponent></TaskListComponent>
     </div>
   );

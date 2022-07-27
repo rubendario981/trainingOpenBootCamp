@@ -1,6 +1,6 @@
 import { ROLES } from "./roles.enum";
 
-export class User {
+export default class User {
     username= '';
     email = '';
     password = '';

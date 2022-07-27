@@ -50,7 +50,7 @@ const LoginForm = () => {
 
             <label htmlFor="password">Password</label>
             <Field id='password' name='password' className='form-control' type='password'/>
-            { errors.email && touched.password && (
+            { errors.password && touched.password && (
               <ErrorMessage name='password'/>
             )}
             <div className="d-flex justify-content-around mt-5">
