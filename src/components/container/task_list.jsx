@@ -58,7 +58,7 @@ const TaskListComponent = () => {
   const HeaderTaskList = ()=>{
     return(
       <div className="card-header">
-        <h5 className="card-title">Your Tasks are: </h5>
+        <h3 className="card-title text-center">Your Tasks are </h3>
       </div>
       )
   }

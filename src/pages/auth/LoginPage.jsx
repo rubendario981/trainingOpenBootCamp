@@ -1,10 +1,11 @@
 import React from 'react'
+import LoginForm from '../../components/pure/forms/loginForm'
 
 const LoginPage = () => {
   return (
     <div>
-        <h1>login page</h1>
-        <form></form>
+      <h3 className="bg-primary text-white text-center p-3">Inicia sesion</h3>
+      <LoginForm></LoginForm>
     </div>
   )
 }

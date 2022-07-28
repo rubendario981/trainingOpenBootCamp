@@ -39,7 +39,8 @@ const RegisterForm = () => {
   })
   return (
     <div>
-      <h4 className="text-white bg-primary px-5">
+      <div>
+        <h3 className="bg-primary text-white text-center p-3">Registro usuario</h3>
         <Formik
           initialValues={initialValues}
           validationSchema={registerSchema}
@@ -50,52 +51,62 @@ const RegisterForm = () => {
         >
 
           {({ values, touched, errors, isSubmitting, handleChange, handleBlur }) => (
-            <Form className='d-flex flex-column w-50 m-auto mt-5 border border-primar p-5'>
-              <label className='form-label' htmlFor="username">Username</label>
-              <Field
-                id="username"
-                name="username"
-                placeholder="jane@acme.com"
-                type="text"
-                className='form-control'
-              />
+            <div>
+              <h3 className="bg-primary text-white text-center w-50 m-auto p-2">Ingresa tus datos</h3>
+              <Form className='d-flex flex-column w-50 m-auto border border-primary px-5 pb-5'>
+                <label className='form-label mt-3' htmlFor="username">Username</label>
+                <Field
+                  id="username"
+                  name="username"
+                  placeholder="jane@acme.com"
+                  type="text"
+                  className='form-control'
+                />
 
-              {errors.email && touched.email && (
-                <ErrorMessage name='username' />
-              )}
-
-              <label className='form-label' htmlFor="email">Email</label>
-              <Field id="email" name="email" placeholder="yourmail@acme.com" type="email" className='form-control' />
-
-              {errors.email && touched.email && (
-                <div className="text-danger">
-                  <ErrorMessage name='email' />
-                </div>
-              )}
-
-              <label htmlFor="password">Password</label>
-              <Field id='password' name='password' className='form-control' type='password' />
-              {errors.password && touched.password && (
-                <ErrorMessage name='password' />
-              )}
-              <label htmlFor="confirm">Password</label>
-              <Field id='confirm' name='confirm' className='form-control' type='password' />
-              {errors.confirm && touched.confirm && (
-                <ErrorMessage name='confirm' />
-              )}
-              <div className="d-flex justify-content-around mt-5">
-                {isSubmitting ? <p>Submitting form </p> :
-                  <div>
-                    <button className='btn btn-primary' type="submit">Submit</button>
-                    <button className='btn btn-warning' type="reset">Reset form</button>
+                {errors.email && touched.email && (
+                  <div className="text-danger">
+                    <ErrorMessage name='username' />
                   </div>
-                }
-              </div>
-            </Form>
+                )}
+
+                <label className='form-label mt-3' htmlFor="email">Email</label>
+                <Field id="email" name="email" placeholder="yourmail@acme.com" type="email" className='form-control' />
+
+                {errors.email && touched.email && (
+                  <div className="text-danger">
+                    <ErrorMessage name='email' />
+                  </div>
+                )}
+
+                <label className='from-label mt-3' htmlFor="password">Password</label>
+                <Field id='password' name='password' className='form-control' type='password' />
+                {errors.password && touched.password && (
+                  <div className="text-danger">
+                    <ErrorMessage name='password' />
+                  </div>
+                )}
+
+                <label className='from-label mt-3' htmlFor="confirm">Confirmar password</label>
+                <Field id='confirm' name='confirm' className='form-control' type='password' />
+                {errors.confirm && touched.confirm && (
+                  <div className="text-danger">
+                    <ErrorMessage name='confirm' />
+                  </div>
+                )}
+                <div>
+                  {isSubmitting ? <p className="bg-primary text-white text-center">Submitting form </p> :
+                    <div className="d-flex justify-content-around mt-5">
+                      <button className='btn btn-primary' type="submit">Submit</button>
+                      <button className='btn btn-warning' type="reset">Reset form</button>
+                    </div>
+                  }
+                </div>
+              </Form>
+            </div>
           )}
 
         </Formik>
-      </h4>
+      </div>
     </div>
   )
 }
