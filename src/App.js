@@ -25,10 +25,10 @@ function App() {
         <CycleDidMountAF/>
         <ComponenteConContexto/>
         <Exercises10To12/>
-      </header> */}
-      {/* <ContactListComponent></ContactListComponent>   */}
       <LoginForm></LoginForm>
       <RegisterForm/>
+      </header> */}
+      {/* <ContactListComponent></ContactListComponent>   */}
       <TaskListComponent></TaskListComponent>
     </div>
   );

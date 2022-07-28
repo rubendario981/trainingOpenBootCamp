@@ -61,13 +61,13 @@ const TaskComponent = ({ task, complete, deleteTask }) => {
           {taskLevelBadge()}
         </span>
       </td>
-      <td>
+      <td className='flex-grow-1'>
         <span className='align-middle'>
           {task.completed ?
             <i onClick={()=> complete(task)} className='bi-toggle-off' role='button' style={{ fontWeigth: 'bold', color: 'gray', fontSize: '36px' }}></i> :
             <i onClick={()=> complete(task)} className='bi-toggle-on' role='button' style={{ fontWeigth: 'bold', color: 'green', fontSize: '36px' }}></i>}
         </span>
-        <i onClick={()=> deleteTask(task)} className="bi-trash ms-5" role='button' style={{ fontWeigth: 'bold', color: 'red', fontSize: '32px' }}></i>
+        <i onClick={()=> deleteTask(task)} className="bi-trash ms-2" role='button' style={{ fontWeigth: 'bold', color: 'red', fontSize: '32px' }}></i>
       </td>
     </tr>
   )
