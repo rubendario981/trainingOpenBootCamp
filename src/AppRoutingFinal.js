@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Route, Routes, Navigate, Link, NavLink } from 'react-router-dom'
 import HomePage from './pages/home/HomePage'
 import NotFoundPage from './pages/404/NotFoundPage'
@@ -8,9 +8,22 @@ import TaskListComponent from './pages/tasks/Tasks'
 import TaskDetailPage from './pages/tasks/TaskDetailPage'
 import RegisterForm from './components/pure/forms/registerForm'
 import LoginForm from './components/pure/forms/loginForm'
+import DashBoard from './pages/dashboard/DashBoard'
 
 const AppRoutingFinal = () => {
-    let loggedIn = true
+
+    const [loggedIn, setLoggedIn] = useState(false)
+    
+    useEffect(() => {
+        let user = localStorage.getItem('credentials')
+        setLoggedIn(user)
+    }, [loggedIn])
+
+    const exit = () => {
+        localStorage.removeItem('credentials')
+        setLoggedIn(false)
+    }
+
     return (
         <Router>
             <div className='container'>
@@ -27,20 +40,19 @@ const AppRoutingFinal = () => {
 
                 <main>
                     <Routes>
-                        <Route exact path='/' >
-                            {loggedIn ? 
-                                <Link to={'/dashboard'} />:
-                                <Link to={'/login'} />
-                            }
+                        <Route exact path='/' element={loggedIn ? 
+                                <DashBoard/>:
+                                <LoginForm />
+                            }>                            
                         </Route>
-                        <Route path='/login' element={<LoginForm />} />
-                        <Route path='/profile' element={logged ? <ProfilePage /> : <HomePage />} />
+                        <Route path='/dashboard' element={<DashBoard/>}/>
+                        <Route path='/login' element={<LoginForm/>}/>
+                        <Route path='/register' element={<RegisterForm/>}/>
+                        
+                        <Route path='/profile' element={loggedIn && <ProfilePage />} />
                         {['about', 'faqs'].map((path, i) => <Route path={path} key={i} element={<AboutPage />} />)}
-                        <Route path='/task' element={logged ? <TaskListComponent /> : <RegisterForm />} />
+                        <Route path='/task' element={loggedIn ? <TaskListComponent /> : <RegisterForm />} />
                         {/* <Route path='/task/:id' element={logged ? <TaskDetailPage /> : <RegisterForm />} /> */}
-                        <Route path='/task/:id' render>
-
-                        </Route>
 
                         <Route path='/*' element={<NotFoundPage />} />
                     </Routes>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Formik, Field, Form, ErrorMessage } from 'formik'
 import { useNavigate } from 'react-router-dom'
 import * as Yup from 'yup'
@@ -11,12 +11,13 @@ const loginSchema = Yup.object().shape({
     .required('password is required')
 })
 const LoginForm = () => {
-  const navigate = useNavigate()
+  const navigateTo = useNavigate()
   const initialCredentials = {
     email: '',
     password: ''
   }
-  const [userCredentials, setUserCredentials] = useState(initialCredentials)
+  const goToRegister =()=> navigateTo('/register')
+  
   return (
     <div>
       <h3 className="bg-primary text-white text-center p-3">Iniciar sesion</h3>
@@ -26,9 +27,8 @@ const LoginForm = () => {
         validationSchema={loginSchema}
         onSubmit={async (values) => {
           await new Promise((r) => setTimeout(r, 500));
-          alert(JSON.stringify(values, null, 2));
-          localStorage.setItem('credentials', JSON.stringify(values))
-          navigate('/')
+          await localStorage.setItem('credentials', JSON.stringify(values))
+          await navigateTo('/dashboard')
         }}
       >
         {({ values, touched, errors, isSubmitting, handleChange, handleBlur }) => (
@@ -60,10 +60,14 @@ const LoginForm = () => {
             <div>
               {isSubmitting ? <h6 className="bg-primary text-white text-center w-50 m-auto p-2">Submitting form </h6> :
                 <div className="d-flex justify-content-around mt-5">
-                  <button className='btn btn-primary' type="submit">Submit</button>
-                  <button className='btn btn-warning' type="reset">Reset form</button>
+                  <button className='btn btn-primary' type="submit">Iniciar sesion</button>
+                  <button className='btn btn-warning' type="reset">Borrar campos</button>
                 </div>
               }
+            </div>
+            <div className='d-flex flex-column mt-3 justify-content-center'>
+              <h6 className="text-center w-50 m-auto p-2">No estas registrado??</h6>
+              <button className="btn btn-success" onClick={goToRegister}>Registrate aqui!!!</button>
             </div>
           </Form>
           </div>

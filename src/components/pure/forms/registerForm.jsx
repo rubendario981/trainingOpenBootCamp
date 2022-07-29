@@ -3,10 +3,12 @@ import { Formik, Form, Field, ErrorMessage } from 'formik'
 import { ROLES } from '../../../models/roles.enum'
 import User from '../../../models/user.class'
 import * as Yup from 'yup'
+import { useNavigate } from 'react-router-dom'
 
 const RegisterForm = () => {
   let defaultUser = new User('Ruben', 'rubendario981@gmail.com', '123456', ROLES.USER)
   let user = new User()
+  const navigateTo = useNavigate()
 
   const initialValues = {
     username: '',
@@ -37,6 +39,8 @@ const RegisterForm = () => {
       })
       .required('You should confirm the password')
   })
+
+  const goToLogin = ()=> navigateTo('/login')
   return (
     <div>
       <div>
@@ -61,6 +65,7 @@ const RegisterForm = () => {
                   placeholder="jane@acme.com"
                   type="text"
                   className='form-control'
+                  autoFocus
                 />
 
                 {errors.email && touched.email && (
@@ -100,6 +105,10 @@ const RegisterForm = () => {
                       <button className='btn btn-warning' type="reset">Reset form</button>
                     </div>
                   }
+                </div>
+                <div className='d-flex flex-column mt-3 justify-content-center'>
+                  <h6 className="text-center w-50 m-auto p-2">Ya estas registrado??</h6>
+                  <button className="btn btn-success" onClick={goToLogin}>Inicia sesion aqui!!!</button>
                 </div>
               </Form>
             </div>
