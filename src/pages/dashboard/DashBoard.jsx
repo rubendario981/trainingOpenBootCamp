@@ -4,6 +4,7 @@ import CopyRight from '../../components/pure/forms/CopyRight';
 import { useNavigate } from 'react-router-dom';
 import ObservableExample from '../../components/pure/forms/ObservableExample';
 import FetchExample from '../../components/pure/forms/FetchExample';
+import JokesChuck from '../../components/container/JokesChuck';
 
 const DashBoard = () => {
   const navigateTo = useNavigate()
@@ -16,7 +17,8 @@ const DashBoard = () => {
     navigateTo('/task')
   }
   return (
-    <div className='d-flex flex-column justify-content-center m-auto'>        
+    <div className='d-flex flex-column justify-content-center m-auto'>
+      <JokesChuck/>     
       <FetchExample/>
       <ObservableExample/>
         <h2 className="bg-primary text-white text-center mt-5">Cargar tareas o salida segura</h2>
